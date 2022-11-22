@@ -1,0 +1,13 @@
+Elastic File system
+
+Create file --> create name --> Choose VPC --> Storage class -->
+cusomize --> life cycle management --> create security Group (SSH & NFS)
+review --> create EFS.
+
+create instance as your requirement.
+
+open instance with putty 
+
+open file system --> attach --> Using the NFS client: --> copy command --> 
+with directory --> create file into the connected directory
+
