@@ -1,0 +1,107 @@
+Unix(Linux) commands
+--------------------
+
+Unix commands basically case sensitive commands, so we should go for the command as it is.
+
+1.sudo su - root   --   Change as root user Sudo stands for either "substitute user do" or "super user do" 
+			and it allows you to temporarily elevate your current user account to have root privileges.
+
+2.whoami	   --	The whoami command allows Linux users to see the currently logged-in user.
+
+3.exit		   --  	To exit from the user and terminal.
+
+4.logout	   --   The logout command is a Linux/UNIX shell command that performs the task of logging out the 
+			logged-in user from the system in that session, programmatically.
+
+5.clear		   --	Clear is a standard Unix computer operating system command that is used to clear the terminal screen.
+
+6.mkdir		   -- 	To create a new directory with giving name of the directory.
+
+7.ls		   -- 	The ls command is one of the most commonly used,The command is used in listing contents inside a directory.
+
+8.cd		   --	Cd command in linux known as change directory command. It is used to change current working directory. 
+			In the above example, we have checked number of directories in our home directory and moved inside the 
+			Documents directory by using cd Documents command.
+
+9.Touch		   --	Touch command is a Linux command is mainly used to create empty files.
+
+10.cat		   -- 	Cat(concatenate) command is very frequently used in Linux. It reads data from the file and gives their content as output.
+
+11.vi		   -- 	Creates a new file if it already not exist, otherwise opens existing file.
+
+12.vi -R	   --	Opens an existing file in read only mode.
+
+13.cd ..	   -- 	It will shifting back one directory.
+
+14.cd ../../	   --  	It will shifting back two directory.
+
+15.cd		   -- 	Root home path
+
+16.pwd		   --	The pwd command writes to standard output the full path name of your current directory (from the root directory).
+
+17.rm	    	   --   The rm command removes the entries for a specified file, group of files, or certain select files from a list within a directory.
+
+18.rm -f	   --	It means a file or directory will be deleted anyhow even 
+			if it has read-only permission. To delete a file forcefully,	
+19.rm.rf	   --	Linux rm -rf command deletes directory forcefully.
+
+20.rmdir	   -- 	The rmdir command removes the directory, specified by the Directory parameter, from the system. 
+			The directory must be empty before you can remove it.
+21.cp		   --	You use the cp command for copying files from one location to another. This command can also copy directories (folders). 
+			[file/directory-sources] specifies the sources of the files or directories you want to copy.
+22.mv		   --	Use the mv command to move files and directories from one directory to another or to rename a file or directory. 
+			If you move a file or directory to a new directory without specifying a new name, it retains its original name.
+23.vi		   --   Esc  -- escape mode
+			i    -- insert mode
+			:    -- command mode
+			:w    -- save file
+			:q    -- quit file
+			:wq   -- save & quit
+			:wq!  -- save & quit forcefully
+			:$    -- brining the cursor to the last line of the file
+			:set number  --  A column of sequential line numbers will then appear at the left side of the screen.
+			:set nonumber  -- A column of sequential line numbers will then disappear at the left side of the screen.
+			:5 (ex)  --  brining the cursor to the 5th line of the file.
+			:/data (ex)  --  search and find the particular word.
+			:%s/aim/new (ex)  --  This command will search and replace the aim to new.
+			dd    --  will delete the entire row of the cursor appear.
+			5d (ex)  -- this command will delete 6 row in file from cursor appear.
+			x   --  Delete a character in a row from cursor appear.
+			2x  --  delete 2 character in a row from cursor appear.
+24.uname	   --	uname is a command-line utility that prints basic information about the operating system name and system hardware.
+
+25.uptime	   --	uptime gives a one line display of the following information. The current time, how long the system has been running, 
+			how many users are currently logged on, and the system load averages for the past 1, 5, and 15 minutes. 
+26.ls-l / ls -lrt 
+   ls -ltr  	   -- 	The command is used in listing contents and files inside a directory .
+
+27.ls -la / ls -lrta -- The command is used in listing hidden contents and files inside a directory.
+
+28.chmod	   --	The command chmod -R 777 / makes every single file on the system under / (root) have rwxrwxrwx permissions. 
+			This is equivalent to allowing ALL users read/write/execute permissions.
+29.free -m	   --   The command will show the memory deatils in Mb and Kb.
+   free -k         
+30.sar		   --	sar: System Activity Report. It can be used to monitor Linux system's resources like CPU usage, Memory utilization,
+		  	I/O devices consumption, Network monitoring, Disk usage, process and thread allocation, battery performance,
+			Plug and play devices, Processor performance, file system and more.
+31.ps -ef 	   -- 	The command shows the details of running processor.
+
+32.ps -ef | grep   -- 	This command list all the process and because it uses -e and -fit also prints the full command which is 
+			used to start the process. This means if it's a java process then the java command will be present in the 
+			output and that's what we are searching for using the grep command. $ ps -ef | grep java.
+33.du -sh	   --	du -sh (filename) The command shows the file size.
+
+34.df -h	   --	The df command displays information about total space and available space on a file system.
+
+35.gzip		   --	This command used for compress a required file.
+
+36.gunzip	   --	This command used for uncompress a required file.
+
+37.zip / unzip     --   This command used for zip and unzip the required file.
+
+38.tar -xvzf 	   --   This command used for untar the required file.
+
+39.history	   --   history command is used to view the previously executed command.
+
+-------------/-------------/---------------/---------------/----------------/-----------------/----------------/--------------
+	 
