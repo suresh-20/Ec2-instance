@@ -1,0 +1,53 @@
+VPC - Virtual private cloud - Documentation-09-09-2022
+
+Create VPC -->Tag name - prac-1 --> IPv4 CIDR manual input - 10.0.0.0/16 (with is i'am having 65,536 IP address)
+
+Create Subnet --> Public subnet --> Choose VPC id - created VPC --> Subnet name - prac-1-public
+Availability zone -ap-soth-1a --> IPv4 CIDR block - 10.0.1.0/24
+
+Create Subnet --> Private subnet --> Choose VPC id - created VPC --> Subnet name - prac-1-private
+Availability zone -ap-soth-1b --> IPv4 CIDR block - 10.0.2.0/24 
+
+Create Interner gateway --> Tag name - prac-1--> Attached VPC - created VPC
+
+Create Route table --> Public --> Tag name - prac-1-public --> Choose VPC - created VPC
+Associate with respective subnets(public)
+
+Create Route table --> Private --> Tag name - prac-1-private --> Choose VPC - created VPC
+Associate with respective subnets(private)
+
+Edit public route to add role 0.0.0.0/0 choose internet gateway 
+
+Create security group --> public SG -->Tag name - prac-1-sg
+Choose VPC - created VPC --> Add inbound rule (ssh,Rdp,http,https) source 0.0.0.0/0
+
+private SG --> Tag name - prac-1-sg --> Choose VPC - created VPC
+Add inbound rule (All TCP 0 - 65535) source - Pub (SG)
+
+Create Ec2 instance
+
+public Server --> Tag name - public --> Choose AMI - Linux --> key pair - .ppk format
+Network setting --> VPC - created VPC --> Subnet - Public subnet
+Auto-assign public IP-enable --> Security group - public 
+
+private Server --> Tag name - private --> Choose AMI - Linux --> key pair - .pem format
+Network setting --> VPC - created VPC --> Subnet - Private subnet
+Auto-assign public IP-disable --> Security group - private
+
+use putty app to open linux AMI --> logon - ec2-user --> change as root user (sudo su -)
+command cd .ssh --> command touch private key --> command vi (private key) file name open
+open pem file in notepad --> copy pem file into the linux vi --> esc mode type (:wq)save & quit
+chmod 400 privatekey (for changed read option only)
+
+use command for launch private machine --> ssh -i filename ec2-user@privateid 
+
+VPC nat gateway --> create nat gateway --> choose public subnet --> allocate elastic ip 
+open route table --> private routes --> edit route --> add route --> select natgateway
+
+goto linux machine check internet connectivity using ping command
+
+
+result-/-
+
+
+
