@@ -1,0 +1,274 @@
+Client Default Port Number 
+--------------------------
+
+SSh    -    22		RDP    -    3389	  HTTP   -    80
+HTTPS  -    443		NFS    -    2049	  Redsft -    5439
+AllTCP -    0-65535	MySQL  -    3306	  postgreSQL -5432
+
+===========================================================================================
+
+DevOps Tools & Commands
+-----------------------
+Git Commands     git version 2.37.1(linux)        2.25.1(ubuntu)
+------------
+Git is a DevOps tool used for source code management. 
+It is a free and open-source version control system used to handle small to very large projects efficiently.
+Git is used to tracking changes in the source code.
+
+Git hub
+GitHub is a code hosting platform for version control and collaboration. 
+It lets you and others work together on projects from anywhere. 
+This tutorial teaches you GitHub essentials like repositories, branches, commits, and pull requests.
+
+yum install git -y
+
+1.git init 	2.git add    	3.git commit	  4.git push	  
+5.git pull/gitfetch	6.git --version	       7.gitlog --oneline    8.git remote -v		
+9.git config --user.name / git config --user.email
+10.git show   11.git stash     12.git stash pop (stash id)   13.git stash list
+14.git clone    15.git diff     16.git fork    17.git revert / git reset
+18.git branch (name)    19.git branch      20.git checkout (branch name)
+21.git merge (branch name) 
+22.git config --global merge.tool vimdiff
+23.git config --global merge.conflictstyle diff3
+24.git config --global merge.prompt false
+25.git cherry-pick (id)
+26.git show (commit id)  27.git rebase (branch)
+28.git clean  29.git status  30.
+
+==============================================================================================
+
+Jenkins Commands    jenkins version 2.361.4(linux)    2.378(ubuntu)
+----------------
+Jenkins is an open source continuous integration/continuous delivery and deployment 
+(CI/CD) automation software DevOps tool written in the Java programming language. 
+It is used to implement CI/CD workflows, called pipelines.
+
+Jenkins default port number 8080
+
+Java 11 & java 8 version can run in jenkins
+
+Java installation
+sudo apt update	
+sudo apt-get install openjdk-11-jre
+java --version 
+
+Jenkins installtion
+1.key file 	2.binary file	    3.sudo apt-get install jenkins	
+4.Jenkins --version
+
+sudo useradd -m -d /home/suresh/ -s /bin/bash -G sudo suresh
+
+ssh-keygen -t rsa -N "" -f /home/suresh/.ssh/id_rsa
+
+ps-ef | grep jenkins
+
+Type of jobs in jenkins
+1.Free style job
+2.Pipeline job
+3.multi-branch pipeline
+
+Default location /var/lib/jenkins
+
+Tar file to untar - tar -xvzf (file name)
+zip file to unzip - unzip (file name)
+
+we should keep war file into webapps  
+
+conf file to edit the configuration
+
+bin file to start after changing the configuration
+startup.sh to start
+shutdown.sh to stop
+
+master and slave 
+Both machine should have java installation to understand the master language
+
+Types of pipelines
+
+Declarative pipeline -- CI/CD -- groovy script
+Scripted pipeline --Shell scripted
+
+==========================================================================================
+
+Docker commands         Docker version 1.5-2
+---------------
+Docker is an open platform for developing, shipping, and running applications. 
+Docker enables you to separate your applications from your infrastructure so you can deliver software quickly. 
+With Docker, you can manage your infrastructure in the same ways you manage your applications.
+
+Docker hub
+Docker Hub is a service provided by Docker for finding and sharing container images with your team.
+
+commands
+1.docker pull (app name) to pull image from docker hub	
+2.docker images  docker image info
+3.docker ps docker container info
+4.docker run -itd --name containername -p 8080:80 imagename
+-itd interactive terminal detached mode
+--name give your container name
+-p port number to specify
+5.docker exec -it containerid /bin/bash
+/bin/bash  working shell
+6.docker stop containerid to stop container
+7.docker ps -a to show stopped containers
+8.docker rm conatanerid 
+9.docker rmi imagename to delete images
+10.docker rm -f id
+11.docker log container id
+12.docker inspect container id  (docker activity and process & history)
+13.docker info container id (container info)
+14.docker top container id (process id)
+15.docker stats containerid (cpu utilization & memory utilization)
+16.docker tag reponame/imagename
+17.docker push reponame/taged imagename
+18.docker build -t imagename to build a container
+19.docker commit
+20.docker save (saved as tar file)
+21.docker commit containerid backupimagename
+22.docker save -o /root/container.tar/backupname
+23.docker load -i container.tar
+24.docker prune
+
+============================================================================================
+
+ANSIBLE Commands   ansible core version 2.11.12
+----------------
+Ansible is an open source IT Configuration Management, Deployment &
+Orchestration tool. It aims to provide large productivity gains to a wide variety of
+automation challenges. This tool is very simple to use yet powerful enough to automate
+complex multi-tier IT application environments
+
+Ansible works on Master & Slave concept
+Ansible works by push based concept
+Ansible is write on Python
+
+Ansible works on ec2 user
+
+1.Adhoc command - to execute only one task
+2.Playbook _ to execute multi tasks
+3.Role
+4.Vault
+
+Important files in Ansible
+inventory file - slaves.txt
+configuration file  - ansible.cfg
+
+Master machine should based on linux machine for better performance
+Slave can be run in a different flavour
+
+pagent - key management tool
+
+adhoc command
+1.ansible all -i slaves.txt(inventory file name) -m ping
+all - all the slave machines in the inventory file
+-i - inventory file
+-m - module
+ping - it is one of the module in ansible
+
+we can grouping the slave machine [prod] group name
+
+2.ansible prod -i slave.txt(inventory file name) -m ping
+
+3.ansible prod -i slave.txt(inventory file name) -m yum -a "name=httpd state=present" -b
+all - all the slave machines in the inventory file
+-i - inventory file
+-m - module (yum) if your slave in ubuntu go with apt module
+-a - attributes
+name - apache httpd
+state - present (install)
+	absent (uninstall)
+-b - became as root user
+
+4.ansible prod -i slave.txt(inventory file name) -m service -a "name=httpd state=started" -b
+5.ansible all -i slaves.txt -m copy -a "src=./slaves.txt dest=/tmp/slaves.txt"
+6.ansible abc -m file -a "dest=/path/usr1/newstate=absent"
+(delete command)
+7.ansible prod -i slave.txt -m user -a 'name=suresh password=admin123' -b
+(new user adding)
+
+Ansible is woring on parallel
+
+code editor - visual code editor
+
+in ansible change permission we should go for 4 digit like chmod 0756
+it doesnot support as 3 digit chmod 756.
+
+8.ansible-playbook -i slaves.txt(inventory file name) httpd.yaml(playbook name)
+
+playbooks working with 
+Ec2.yaml 	loop.yaml	deployment.yaml	    httpd.yaml
+jenkins.yaml	portchange.yaml	
+
+9.ansible-vault encrypt httpd.yaml
+10.ansible-vault view httpd.yaml
+11.ansible-vault edit httpd.yaml
+
+dry run in ansible    -   ansible-playbook -i slaves.txt loop --syntax-check
+Ansible Dry Run or Ansible Check mode feature is to validate your playbook before execution. 
+With the Ansible Dry Run feature, you can execute the playbook without having to actually make changes on the server. 
+this enables us to see what changes are going to be made when the playbook is run.
+
+=============================================================================================
+
+TERRFORM Commands   terraform version v1.3.2
+-----------------
+Terraform is a tool for building, changing and versioning infrastructure safely and efficiently. 
+Terraform can manage existing and popular cloud service providers as well as custom in-house solutions. 
+Configuration files describe to Terraform the components needed to run a single application or your entire datacenter.
+
+Terraform is an IAC tool, used primarily by DevOps teams to automate various infrastructure tasks. 
+The provisioning of cloud resources, for instance, is one of the main use cases of Terraform. It's a cloud-agnostic, 
+open-source provisioning tool written in the Go language and created by HashiCorp.
+
+Terraform is a go language
+scripts HCL Hashicorp language 
+
+visual code editor --> add plugins --> hashicorp terraform
+
+terraform life cycle
+Code --> 
+terraform init --> it will intialize the terraform
+terraform plan --> it will give us the blueprint
+terraform apply --> a new resource will be created
+terraform destroy --> it will delete the resources
+
+plan is a blue print
+
+Terraform work as Ec2 user
+
+configure with server   -   aws configure
+
+linux file system for terraform /usr/local/bin 
+
+format of terraform - .tf
+
+terraform plan -out terraformoutputfile.out
+
+==========/=============/=============/==============/=============/===============/===========/==
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
