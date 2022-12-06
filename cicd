@@ -1,0 +1,106 @@
+CI-CD-PROJECT
+1-	Install Jenkins, Java, Git, Docker & Maven Tool
+
+# Create a Ec2 instance -- linux AMI -- t2 medium instance type -- Memory 20Gb -- create.
+# Login using putty
+# Change as root user  sudo su -
+# wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+# rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+# amazon-linux-extras install java-openjdk11
+# yum install Jenkins -y
+# systemctl start Jenkins
+# yum install git -y
+# yum install docker -y
+# service docker start
+# cd /opt
+# wget https://mirrors.estointernet.in/apache/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
+# tar -xvzf (untar maven file)
+# cd /
+# Vi /etc/docker/daemon.json
+{
+        "insecure-registries" : ["11.156.241.159:8083"]  
+}
+# Service docker restart
+# chmod 777 /var/run/docker.sock
+# Open jenkins in browser with using public Ip
+# Install maven integration plugin 
+# Install sonarqube scanner plugin
+# Mention maven path in Global tool configuration
+
+
+2-Install Sonarqube
+
+# Sonarqube should not start with root user
+# Create a Ec2 instance -- linux AMI -- t2 medium instance type -- Memory 20Gb -- create.
+# Create Database ( Engine option MySQL,  Engine version MySQL 5.7.33,
+Credential settings Set password)
+# Login using putty
+# Change as root user    sudo su -
+# Yum install java-1.8.0 
+# Yum install mysql
+# Mysql -h database-1.c6esxx5ay4ne.ap-south-1.rds.amazonaws.com-P 3306 -u admin -p
+ 
+# Enter Database password that you entered in RDS
+ 
+Grant database access permissions to users
+# Mysql> CREATE DATABASE sonar CHARACTER SET utf8 COLLATE utf8_general_ci;
+# Mysql> CREATE USER sonar@localhost IDENTIFIED BY 'sonar';
+# Mysql> CREATE USER sonar@'%' IDENTIFIED BY 'sonar';
+# Mysql> GRANT ALL ON sonar.* TO sonar@localhost;
+# Mysql> GRANT ALL ON sonar.* TO sonar@'%';
+# Mysql> SELECT User FROM mysql.user;
+# Mysql> FLUSH PRIVILEGES;
+# Mysql> QUIT
+Install sonarqube:
+# cd /opt
+# wget  https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-6.7.6.zip 
+# unzip sonarqube6.7.6.zip
+# update-alternatives –config java
+ 
+# cd /opt/sonar/conf –
+vi sonar.properties
+Do changes in sonar.properties
+Remove # to the below 
+sonar.jdbc.username=sonar
+sonar.jdbc.password=sonar
+sonar.jdbc.url=jdbc:mysql://<RDS_DATABAE_ENDPOINT>:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance&useSSL=false
+sonar.web.host=0.0.0.0
+sonar.web.context=/sonar
+sonar.web.port=9000
+
+# cd /opt/sonar/conf –
+vi wrapper.conf
+Do changes in wrapper.conf
+ 
+# chown -R ec2-user:ec2-user /opt/sonarqube
+# Switch to ec2-user
+# cd /opt/sonarqube/bin/linux 
+# ./sonar.sh start
+# Open sonarqube with using public IP and port number - 9000
+
+
+3-Nexus installation
+# Create a Ec2 instance -- linux AMI -- t2 medium instance type -- Memory 20Gb
+# Change as root user
+# yum install java-1.8.0
+# cd /opt
+# Wget https://download.sonatype.com/nexus/3/nexus-3.42.0-01-unix.tar.gz
+# cd /opt/nexus/bin –
+# ./nexus start
+# Open Nexus with using public IP and port number -8081
+
+
+
+
+
+
+
+
+
+
+
+
+
